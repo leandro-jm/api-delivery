@@ -1,0 +1,62 @@
+{
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"HelloResponse": {
+				"properties": {
+					"message": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"message"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
+		"securitySchemes": {}
+	},
+	"info": {
+		"title": "app-blank",
+		"version": "1.0.0",
+		"description": "App template Node, Express, TypeScript, DotEnv COnfig, API and Swagger",
+		"license": {
+			"name": "ISC"
+		},
+		"contact": {
+			"name": "LJM"
+		}
+	},
+	"openapi": "3.0.0",
+	"paths": {
+		"/hello": {
+			"get": {
+				"operationId": "Home",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/HelloResponse"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": []
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/"
+		}
+	]
+}

@@ -1,0 +1,31 @@
+pipeline {
+    
+    agent any
+    
+    tools {nodejs "node"}
+    
+    environment {
+        PROJECT_NAME = 'app-node'
+        PROJECT_GIT = 'https://github.com/leandro-jm/app-blank-node'
+    }
+
+    stages {
+
+        stage('build app') {
+            steps {
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: $PROJECT_GIT]]])
+                sh 'npm install'
+                sh 'npm run build'
+            }
+        }
+
+        stage('docker image') {
+            steps {
+                script {
+                    sh '''docker build -t $PROJECT_NAME -f Dockerfile '''
+                }
+            }
+        }
+
+    }
+}
